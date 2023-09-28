@@ -16,6 +16,13 @@
 . $PSScriptRoot\Request-AzeriteEssenceByID.ps1
 . $PSScriptRoot\Request-AzeriteEssenceMedia.ps1
 . $PSScriptRoot\Request-AzeriteEssencesIndex.ps1
+. $PSScriptRoot\Request-CharacterAchievmentsSummary.ps1
+. $PSScriptRoot\Request-CharacterAchievmentStatistics.ps1
+. $PSScriptRoot\Request-CharacterAppearanceSummary.ps1
+. $PSScriptRoot\Request-CharacterCollectionsSummary.ps1
 . $PSScriptRoot\Request-ConnectedRealmByID.ps1
+. $PSScriptRoot\Request-ConnectedRealmIndex.ps1
+. $PSScriptRoot\Request-Realm.ps1
+. $PSScriptRoot\Request-RealmIndex.ps1
 . $PSScriptRoot\Set-WoWApiAccessToken.ps1
 . $PSScriptRoot\Set-WoWRegion.ps1

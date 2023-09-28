@@ -14,22 +14,22 @@
 RootModule = 'loader.psm1'
 
 # Version Number
-ModuleVersion = '1.11'
+ModuleVersion = '1.22'
 
 # Unique Module ID
 GUID = 'eeb2d6de-7267-4304-bfdc-ed01f8e6e048'
 
 # Module Author
-Author = 'jbald'
+Author = 'Jana Baldszun'
 
 # Company
-CompanyName = 'jbald'
+CompanyName = 'privat'
 
 # Copyright
-Copyright = '(c) 2023 jbald. All rights reserved.'
+Copyright = '(c) 2023 Jana Baldszun. All rights reserved.'
 
 # Module Description
-Description = 'BlizzWoW'
+Description = 'PS module for accessing the endpoints of the Blizzard World of Warcraft Web API.'
 
 # Minimum PowerShell Version Required
 PowerShellVersion = ''
