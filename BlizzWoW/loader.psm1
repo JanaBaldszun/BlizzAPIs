@@ -20,6 +20,12 @@
 . $PSScriptRoot\Request-CharacterAchievmentStatistics.ps1
 . $PSScriptRoot\Request-CharacterAppearanceSummary.ps1
 . $PSScriptRoot\Request-CharacterCollectionsSummary.ps1
+. $PSScriptRoot\Request-CharacterDungeons.ps1
+. $PSScriptRoot\Request-CharacterEncountersSummary.ps1
+. $PSScriptRoot\Request-CharacterEquipmentSummary.ps1
+. $PSScriptRoot\Request-CharacterHunterPetsSummary.ps1
+. $PSScriptRoot\Request-CharacterMediaSummary.ps1
+. $PSScriptRoot\Request-CharacterRaids.ps1
 . $PSScriptRoot\Request-ConnectedRealmByID.ps1
 . $PSScriptRoot\Request-ConnectedRealmIndex.ps1
 . $PSScriptRoot\Request-Realm.ps1
