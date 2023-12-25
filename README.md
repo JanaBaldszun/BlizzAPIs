@@ -1,3 +1,3 @@
 # BlizzAPIs
 
-still in DEV, do not use it!
+Ready to test! Still in dev!!
