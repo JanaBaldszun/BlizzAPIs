@@ -1,4 +1,4 @@
-﻿function Get-CharacterAchievmentsSummary
+﻿function Get-CharacterAchievementStatistics
 {
   param(
     [Parameter(Mandatory, Position=0)][String]
@@ -10,7 +10,7 @@
   $realmSlug = $realmSlug.ToLower()
   $characterName = $characterName.ToLower()
 
-  $EndpointPath = "profile/wow/character/$realmSlug/$characterName/achievements"
+  $EndpointPath = "profile/wow/character/$realmSlug/$characterName/achievements/statistics"
   $Namespace = -join('?namespace=profile-',$Global:WoWRegion,'&locale=',$Global:WoWLocalization,'&')
   $URL = -join($Global:WoWBaseURL,$EndpointPath,$Namespace,'access_token=',$Global:WoWAccessToken)    
   

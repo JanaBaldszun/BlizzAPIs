@@ -8,8 +8,8 @@
 
 # LOADING ALL FUNCTION DEFINITIONS:
 
-. $PSScriptRoot\Get-CharacterAchievmentsSummary.ps1
-. $PSScriptRoot\Get-CharacterAchievmentStatistics.ps1
+. $PSScriptRoot\Get-CharacterAchievementsSummary.ps1
+. $PSScriptRoot\Get-CharacterAchievementStatistics.ps1
 . $PSScriptRoot\Get-CharacterAppearanceSummary.ps1
 . $PSScriptRoot\Get-CharacterCollectionsSummary.ps1
 . $PSScriptRoot\Get-CharacterCompletedQuests.ps1
