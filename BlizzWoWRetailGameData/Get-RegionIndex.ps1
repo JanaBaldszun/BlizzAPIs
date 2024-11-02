@@ -1,18 +1,42 @@
 ﻿function Get-RegionIndex
 {
+  <#
+      .SYNOPSIS
+      Retrieves the index of available regions in World of Warcraft.
+
+      .DESCRIPTION
+      The function fetches the region index from the World of Warcraft API. An optional switch is available to return the raw JSON response.
+
+      .PARAMETER Raw
+      Optional switch to return the raw JSON response from the API.
+
+      .EXAMPLE
+      Get-RegionIndex
+      Retrieves the list of available regions in a formatted manner.
+
+      .EXAMPLE
+      Get-RegionIndex -Raw
+      Retrieves the raw JSON response of the available regions.
+
+      .NOTES
+      This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
+  
+      .LINK
+      https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+  #>
+
   param(
-    [Parameter(Position = 0)][Switch]$Raw
+    [Parameter(Position = 0, HelpMessage = 'Return raw JSON data.')]
+    [Switch]$Raw
   )
 
   if(Test-WoWApiConnection)
   {
-    $EndpointPath = 'data/wow/region/index'
-    $Namespace = -join('?namespace=dynamic-', $Global:WoWRegion, '&locale=', $Global:WoWLocalization, '&')
-    $URL = -join($Global:WoWBaseURL, $EndpointPath, $Namespace, 'access_token=', $Global:WoWAccessToken)    
-  
-    try 
+    $URL = '{0}data/wow/region/index?namespace=dynamic-{1}&locale={2}' -f $Global:WoWBaseURL, $Global:WoWRegion, $Global:WoWLocalization
+
+    try
     {
-      $result = Invoke-RestMethod -Uri $URL -TimeoutSec 5
+      $result = Invoke-RestMethod -Uri $URL -Headers $Global:WoWApiAuthHeader -TimeoutSec 5
       if($result -and $result.PSobject.Properties.name -contains 'regions')
       {
         if($Raw)
@@ -29,11 +53,11 @@
         }
       }
     }
-    catch 
+    catch
     {
       $statusCode = $_.Exception.Response.StatusCode.value__
       $status = $_.Exception.Response.StatusCode
-      Write-Verbose -Message ('Bad status code ({0}) {1}' -f $statusCode, $status)     
-    }  
+      Write-Verbose -Message ('Bad status code ({0}) {1}' -f $statusCode, $status)
+    }
   }
 }

@@ -39,3 +39,4 @@
 . $PSScriptRoot\Get-GuildRoster.ps1
 . $PSScriptRoot\Set-WoWApiAccessToken.ps1
 . $PSScriptRoot\Set-WoWRegion.ps1
+. $PSScriptRoot\Test-WoWApiConnection.ps1

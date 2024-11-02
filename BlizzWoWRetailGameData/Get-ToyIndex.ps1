@@ -1,18 +1,42 @@
 ﻿function Get-ToyIndex
 {
+  <#
+      .SYNOPSIS
+      Retrieves the index of toys in World of Warcraft.
+
+      .DESCRIPTION
+      This function fetches the list of toys from the World of Warcraft API. It connects to the API endpoint and retrieves all available toys, with an option to return raw JSON data.
+
+      .PARAMETER Raw
+      Optional switch to return the raw JSON response from the API instead of a formatted output.
+
+      .EXAMPLE
+      Get-ToyIndex
+      Retrieves the list of toys available in the World of Warcraft API.
+
+      .EXAMPLE
+      Get-ToyIndex -Raw
+      Retrieves the raw JSON response of the list of toys available in the World of Warcraft API.
+
+      .NOTES
+      This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
+  
+      .LINK
+      https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+  #>
+
   param(
-    [Parameter(Position = 0)][Switch]$Raw
+    [Parameter(Position = 0, HelpMessage = 'Return raw JSON data.')]
+    [Switch]$Raw
   )
 
   if(Test-WoWApiConnection)
   {
-    $EndpointPath = 'data/wow/toy/index'
-    $Namespace = -join('?namespace=static-', $Global:WoWRegion, '&locale=', $Global:WoWLocalization, '&')
-    $URL = -join($Global:WoWBaseURL, $EndpointPath, $Namespace, 'access_token=', $Global:WoWAccessToken)    
-  
+    $URL = '{0}data/wow/toy/index?namespace=static-{1}&locale={2}' -f $Global:WoWBaseURL, $Global:WoWRegion, $Global:WoWLocalization
+
     try 
     {
-      $result = Invoke-RestMethod -Uri $URL -TimeoutSec 5
+      $result = Invoke-RestMethod -Uri $URL -Headers $Global:WoWApiAuthHeader -TimeoutSec 5
       if($result -and $result.PSobject.Properties.name -contains 'toys')
       {
         if($Raw)

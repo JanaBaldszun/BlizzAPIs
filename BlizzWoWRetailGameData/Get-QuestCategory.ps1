@@ -1,19 +1,49 @@
 ﻿function Get-QuestCategory
 {
+  <#
+      .SYNOPSIS
+      Retrieves information about a specific quest category in World of Warcraft.
+
+      .DESCRIPTION
+      The function fetches detailed information for a given quest category using the World of Warcraft API. The ID of the quest category is a mandatory parameter. An optional switch is available to return raw JSON data.
+
+      .PARAMETER Id
+      The ID of the quest category. This is required and must not be empty.
+
+      .PARAMETER Raw
+      Optional switch to return the raw JSON response from the API.
+
+      .EXAMPLE
+      Get-QuestCategory -Id '1234'
+      Retrieves formatted details for the quest category with ID 1234.
+
+      .EXAMPLE
+      Get-QuestCategory -Id '1234' -Raw
+      Retrieves the raw JSON response for the quest category with ID 1234.
+
+      .NOTES
+      This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
+  
+      .LINK
+      https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+  #>
+
   param(
-    [Parameter(Mandatory, Position = 0)][String]$Id,
-    [Parameter(Position = 1)][Switch]$Raw
+    [Parameter(Mandatory, Position = 0, HelpMessage = 'The ID of the quest category.')]
+    [ValidateNotNullOrEmpty()]
+    [String]$Id,
+
+    [Parameter(Position = 1, HelpMessage = 'Return raw JSON data.')]
+    [Switch]$Raw
   )
 
   if(Test-WoWApiConnection)
   {
-    $EndpointPath = ('data/wow/quest/category/{0}' -f $Id)
-    $Namespace = -join('?namespace=static-', $Global:WoWRegion, '&locale=', $Global:WoWLocalization, '&')
-    $URL = -join($Global:WoWBaseURL, $EndpointPath, $Namespace, 'access_token=', $Global:WoWAccessToken)    
-  
+    $URL = '{0}data/wow/quest/category/{1}?namespace=static-{2}&locale={3}' -f $Global:WoWBaseURL, $Id, $Global:WoWRegion, $Global:WoWLocalization
+    
     try 
     {
-      $result = Invoke-RestMethod -Uri $URL -TimeoutSec 5
+      $result = Invoke-RestMethod -Uri $URL -Headers $Global:WoWApiAuthHeader -TimeoutSec 5
       if($result) 
       {
         if($Raw)
@@ -24,7 +54,10 @@
         {
           Write-Verbose -Message 'This is a formatted result. To get the native result use the -Raw parameter.'
 
-          $result.PSObject.Properties.Remove('_links')
+          if($result.PSObject.Properties['_links'])
+          {
+            $result.PSObject.Properties.Remove('_links')
+          }
           return $result
         }
       }
@@ -37,4 +70,3 @@
     }  
   }
 }
-

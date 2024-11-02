@@ -26,7 +26,7 @@
       This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
     
       .LINK
-      https://develop.battle.net/documentation/battle-net/oauth-apis
+      https://develop.battle.net/documentation/world-of-warcraft
   #>
 
   if(

@@ -1,35 +1,77 @@
-﻿function Get-CharacterPvP
+﻿function Get-CharacterPvP 
 {
-  param(
-    [Parameter(Mandatory, Position = 0)][String]$realmSlug,
-    [Parameter(Mandatory, Position = 1)][String]$characterName,
-    [Parameter(Position = 2)][Switch]$Raw
+  <#
+      .SYNOPSIS
+      Retrieves the PvP summary of a specified character in World of Warcraft.
+
+      .DESCRIPTION
+      The function fetches the PvP summary for a given character using the World of Warcraft API. The realm slug and character name are required parameters. An optional switch is available to return raw JSON data.
+
+      .PARAMETER realmSlug
+      The slug of the realm. This is required and must not be empty.
+
+      .PARAMETER characterName
+      The name of the character. This is required and must not be empty.
+
+      .PARAMETER Raw
+      Optional switch to return the raw JSON response from the API.
+
+      .EXAMPLE
+      Get-CharacterPvP -realmSlug 'azshara' -characterName 'strandmaus'
+      Retrieves the PvP summary for the character named Strandmaus on the Azshara realm.
+
+      .EXAMPLE
+      Get-CharacterPvP -realmSlug 'azshara' -characterName 'strandmaus' -Raw
+      Retrieves the raw JSON response of the PvP summary for the character named Strandmaus on the Azshara realm.
+
+      .NOTES
+      This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
+
+      .LINK
+      https://develop.battle.net/documentation/world-of-warcraft/profile-apis
+  #>
+
+  param (
+    [Parameter(Mandatory, Position = 0, HelpMessage = 'The slug of the realm.')]
+    [ValidateNotNullOrEmpty()]
+    [String]$realmSlug,
+
+    [Parameter(Mandatory, Position = 1, HelpMessage = 'The character name.')]
+    [ValidateNotNullOrEmpty()]
+    [String]$characterName,
+
+    [Parameter(Position = 2, HelpMessage = 'Return raw JSON data.')]
+    [Switch]$Raw
   )
 
   $realmSlug = $realmSlug.ToLower()
   $characterName = $characterName.ToLower()
-  
-  if(Test-WoWApiConnection)
+
+  if(Test-WoWApiConnection) 
   {
-    $EndpointPath = "profile/wow/character/$realmSlug/$characterName/pvp-summary"
-    $Namespace = -join('?namespace=profile-', $Global:WoWRegion, '&locale=', $Global:WoWLocalization, '&')
-    $URL = -join($Global:WoWBaseURL, $EndpointPath, $Namespace, 'access_token=', $Global:WoWAccessToken)    
-  
+    $URL = '{0}profile/wow/character/{1}/{2}/pvp-summary?namespace=profile-{3}&locale={4}' -f $Global:WoWBaseURL, $realmSlug, $characterName, $Global:WoWRegion, $Global:WoWLocalization
+
     try 
     {
-      $result = Invoke-RestMethod -Uri $URL -TimeoutSec 5
+      $result = Invoke-RestMethod -Uri $URL -Headers $Global:WoWApiAuthHeader -TimeoutSec 5
       if($result) 
       {
-        if($Raw)
+        if($Raw) 
         {
           return $result
         }
-        else
+        else 
         {
           Write-Verbose -Message 'This is a formatted result. To get the native result use the -Raw parameter.'
 
-          $result.PSObject.Properties.Remove('_links')
-          $result.PSObject.Properties.Remove('character')
+          if($result.PSObject.Properties['_links']) 
+          {
+            $result.PSObject.Properties.Remove('_links')
+          }
+          if($result.PSObject.Properties['character']) 
+          {
+            $result.PSObject.Properties.Remove('character')
+          }
           return $result
         }
       }
@@ -38,7 +80,7 @@
     {
       $statusCode = $_.Exception.Response.StatusCode.value__
       $status = $_.Exception.Response.StatusCode
-      Write-Verbose -Message "Bad status code ($statusCode) $status"
+      Write-Verbose -Message ('Bad status code ({0}) {1}' -f $statusCode, $status)
     }
   }
 }

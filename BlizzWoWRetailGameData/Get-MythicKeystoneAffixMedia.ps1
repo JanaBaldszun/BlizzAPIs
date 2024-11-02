@@ -1,19 +1,49 @@
 ﻿function Get-MythicKeystoneAffixMedia
 {
+  <#
+      .SYNOPSIS
+      Retrieves media information for a specified Mythic Keystone affix in World of Warcraft.
+
+      .DESCRIPTION
+      The function fetches media data for a given Mythic Keystone affix using the World of Warcraft API. The affix ID is required, and an optional switch is available to return raw JSON data.
+
+      .PARAMETER ID
+      The ID of the Mythic Keystone affix. This is required and must not be empty.
+
+      .PARAMETER Raw
+      Optional switch to return the raw JSON response from the API.
+
+      .EXAMPLE
+      Get-MythicKeystoneAffixMedia -ID '123'
+      Retrieves the media information for the Mythic Keystone affix with ID 123.
+
+      .EXAMPLE
+      Get-MythicKeystoneAffixMedia -ID '123' -Raw
+      Retrieves the raw JSON response for the media information of the Mythic Keystone affix with ID 123.
+
+      .NOTES
+      This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
+  
+      .LINK
+      https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+  #>
+
   param(
-    [Parameter(Mandatory, Position = 0)][String]$ID,
-    [Parameter(Position = 1)][Switch]$Raw
+    [Parameter(Mandatory, Position = 0, HelpMessage = 'The ID of the Mythic Keystone affix.')]
+    [ValidateNotNullOrEmpty()]
+    [String]$ID,
+
+    [Parameter(Position = 1, HelpMessage = 'Return raw JSON data.')]
+    [Switch]$Raw
   )
 
   if(Test-WoWApiConnection)
   {
-    $EndpointPath = ('data/wow/media/keystone-affix/{0}' -f $ID)
-    $Namespace = -join('?namespace=static-', $Global:WoWRegion, '&locale=', $Global:WoWLocalization, '&')
-    $URL = -join($Global:WoWBaseURL, $EndpointPath, $Namespace, 'access_token=', $Global:WoWAccessToken)    
-  
+    $URL = '{0}data/wow/media/keystone-affix/{1}?namespace=static-{2}&locale={3}' -f $Global:WoWBaseURL, $ID, $Global:WoWRegion, $Global:WoWLocalization
+
     try 
     {
-      $result = Invoke-RestMethod -Uri $URL -TimeoutSec 5
+      $result = Invoke-RestMethod -Uri $URL -Headers $Global:WoWApiAuthHeader -TimeoutSec 5
       if($result -and $result.PSobject.Properties.name -contains 'assets')
       {
         if($Raw)
@@ -23,7 +53,6 @@
         else
         {
           Write-Verbose -Message 'This is a formatted result. To get the native result use the -Raw parameter.'
-          
           return $result |
           Select-Object -ExpandProperty assets |
           Select-Object -ExpandProperty value

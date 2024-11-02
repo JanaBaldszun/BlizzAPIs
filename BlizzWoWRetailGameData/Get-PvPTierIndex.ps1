@@ -1,18 +1,42 @@
 ﻿function Get-PvPTierIndex
 {
+  <#
+      .SYNOPSIS
+      Retrieves the PvP tier index information from World of Warcraft.
+  
+      .DESCRIPTION
+      The function fetches a list of PvP tiers using the World of Warcraft API. An optional switch is available to return raw JSON data.
+  
+      .PARAMETER Raw
+      Optional switch to return the raw JSON response from the API.
+  
+      .EXAMPLE
+      Get-PvPTierIndex
+      Retrieves the list of PvP tiers in a formatted way.
+  
+      .EXAMPLE
+      Get-PvPTierIndex -Raw
+      Retrieves the raw JSON response of the PvP tier index.
+  
+      .NOTES
+      This function requires the World of Warcraft API to be accessible and valid credentials to be configured in the global variables.
+  
+      .LINK
+      https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
+  #>
+
   param(
-    [Parameter(Position = 0)][Switch]$Raw
+    [Parameter(Position = 0, HelpMessage = 'Return raw JSON data.')]
+    [Switch]$Raw
   )
 
   if(Test-WoWApiConnection)
   {
-    $EndpointPath = 'data/wow/pvp-tier/index'
-    $Namespace = -join('?namespace=static-', $Global:WoWRegion, '&locale=', $Global:WoWLocalization, '&')
-    $URL = -join($Global:WoWBaseURL, $EndpointPath, $Namespace, 'access_token=', $Global:WoWAccessToken)    
+    $URL = '{0}data/wow/pvp-tier/index?namespace=static-{1}&locale={2}' -f $Global:WoWBaseURL, $Global:WoWRegion, $Global:WoWLocalization
   
     try 
     {
-      $result = Invoke-RestMethod -Uri $URL -TimeoutSec 5
+      $result = Invoke-RestMethod -Uri $URL -Headers $Global:WoWApiAuthHeader -TimeoutSec 5
       if($result -and $result.PSobject.Properties.name -contains 'tiers')
       {
         if($Raw)
@@ -22,7 +46,6 @@
         else
         {
           Write-Verbose -Message 'This is a formatted result. To get the native result use the -Raw parameter.'
-
           return $result |
           Select-Object -ExpandProperty tiers |
           Sort-Object -Property id

@@ -14,19 +14,19 @@
 RootModule = 'loader.psm1'
 
 # Version Number
-ModuleVersion = '1.3'
+ModuleVersion = '1.7'
 
 # Unique Module ID
 GUID = '87f7a242-0d4a-4068-b773-8e2076abe3ec'
 
 # Module Author
-Author = 'jbald'
+Author = 'Jana Baldszun'
 
 # Company
-CompanyName = 'jbald'
+CompanyName = ''
 
 # Copyright
-Copyright = '(c) 2024 jbald. All rights reserved.'
+Copyright = '(c) 2024 Jana Baldszun. All rights reserved.'
 
 # Module Description
 Description = 'Helper Functions for BlizzApi with MySQL'
