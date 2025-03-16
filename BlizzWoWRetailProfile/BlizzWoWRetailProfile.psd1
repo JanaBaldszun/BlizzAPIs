@@ -14,7 +14,7 @@
 RootModule = 'loader.psm1'
 
 # Version Number
-ModuleVersion = '3.2'
+ModuleVersion = '3.2.1'
 
 # Unique Module ID
 GUID = '7458a134-bc96-450a-b151-db956a4c569f'
@@ -29,7 +29,24 @@ CompanyName = 'privat'
 Copyright = '(c) 2024 Jana Baldszun. All rights reserved.'
 
 # Module Description
-Description = 'BlizzWoWRetailProfile'
+Description = @'
+BlizzWoWRetailProfile is a PowerShell module that provides easy-to-use functions for interacting with Blizzard's World of Warcraft Profile API.
+
+Features:
+- Retrieve character profile information, including achievements, reputations, and statistics
+- Access PvP, Mythic+ dungeons, and mount collection data
+- Fetch guild details and membership
+- Designed for automation and scripting in PowerShell
+
+Requirements:
+- A valid Blizzard Developer API Key
+
+For documentation and examples, visit: https://develop.battle.net/documentation/world-of-warcraft/profile-apis
+GitHub Repository: https://github.com/JanaBaldszun/BlizzWoWRetailProfile
+'@
+
+ProjectUri = 'https://github.com/JanaBaldszun/BlizzAPIs'
+BugTrackerUri = 'https://github.com/JanaBaldszun/BlizzAPIs/issues'
 
 # Minimum PowerShell Version Required
 PowerShellVersion = ''

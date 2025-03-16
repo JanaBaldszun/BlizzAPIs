@@ -14,7 +14,7 @@
 RootModule = 'loader.psm1'
 
 # Version Number
-ModuleVersion = '1.7'
+ModuleVersion = '1.7.1'
 
 # Unique Module ID
 GUID = '87f7a242-0d4a-4068-b773-8e2076abe3ec'
@@ -30,6 +30,9 @@ Copyright = '(c) 2024 Jana Baldszun. All rights reserved.'
 
 # Module Description
 Description = 'Helper Functions for BlizzApi with MySQL'
+
+ProjectUri = 'https://github.com/JanaBaldszun/BlizzAPIs'
+BugTrackerUri = 'https://github.com/JanaBaldszun/BlizzAPIs/issues'
 
 # Minimum PowerShell Version Required
 PowerShellVersion = ''
