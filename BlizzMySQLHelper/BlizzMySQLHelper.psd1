@@ -31,9 +31,6 @@ Copyright = '(c) 2024 Jana Baldszun. All rights reserved.'
 # Module Description
 Description = 'Helper Functions for BlizzApi with MySQL'
 
-ProjectUri = 'https://github.com/JanaBaldszun/BlizzAPIs'
-BugTrackerUri = 'https://github.com/JanaBaldszun/BlizzAPIs/issues'
-
 # Minimum PowerShell Version Required
 PowerShellVersion = ''
 

@@ -45,9 +45,6 @@ For documentation and examples, visit: https://develop.battle.net/documentation/
 GitHub Repository: https://github.com/JanaBaldszun/BlizzWoWRetailProfile
 '@
 
-ProjectUri = 'https://github.com/JanaBaldszun/BlizzAPIs'
-BugTrackerUri = 'https://github.com/JanaBaldszun/BlizzAPIs/issues'
-
 # Minimum PowerShell Version Required
 PowerShellVersion = ''
 

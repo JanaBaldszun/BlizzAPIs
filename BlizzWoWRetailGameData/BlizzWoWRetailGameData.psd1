@@ -24,7 +24,7 @@ Author = 'Jana Baldszun'
 CompanyName = ''
 
 # Copyright
-Copyright = ' 2024 Jana Baldszun. All rights reserved.'
+Copyright = '(c) 2024 Jana Baldszun. All rights reserved.'
 
 # Module Description
 Description = @'
@@ -42,9 +42,6 @@ Requirements:
 For documentation and examples, visit: https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
 GitHub Repository: https://github.com/JanaBaldszun/BlizzAPIs
 '@
-
-ProjectUri = 'https://github.com/JanaBaldszun/BlizzAPIs'
-BugTrackerUri = 'https://github.com/JanaBaldszun/BlizzAPIs/issues'
 
 # Minimum PowerShell Version Required
 PowerShellVersion = ''
