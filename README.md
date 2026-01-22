@@ -38,7 +38,6 @@ While many developers use Python or Node.js for API work, PowerShell is often ov
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | **BlizzWoWRetailGameData** | Interact with general game data like Mounts, Achievements, Professions, Quests, and more.                                                       |
 | **BlizzWoWRetailProfile**  | Fetch character and guild profiles, achievements, collections, PvP stats, dungeon progress, etc.                                                |
-| **BlizzMySQLHelper**       | Import PowerShell objects into existing MySQL tables. The table structure must be created manually, and primary keys must be set up in advance. |
 
 ---
 
@@ -48,10 +47,6 @@ While many developers use Python or Node.js for API work, PowerShell is often ov
   👉 [Install Guide](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
 - **Blizzard Developer Credentials**  
   👉 [Blizzard Developer Portal](https://develop.battle.net/access/)
-- If using **BlizzMySQLHelper**:
-  - MySQL Server
-  - SimplySql module  
-    👉 [SimplySql on PowerShell Gallery](https://www.powershellgallery.com/packages/SimplySql)
 
 ---
 
@@ -62,7 +57,6 @@ While many developers use Python or Node.js for API work, PowerShell is often ov
 ```powershell
 Install-Module -Name BlizzWoWRetailGameData
 Install-Module -Name BlizzWoWRetailProfile
-Install-Module -Name BlizzMySQLHelper
 ```
 > ⚡ **Note**: If prompted to trust the repository, choose `Yes` to proceed.
 
@@ -195,7 +189,7 @@ if ($Character) {
         allied                  = 0
     }
 
-    # Insert into MySQL
+    # Insert into MySQL - Special Modul https://github.com/JanaBaldszun/BlizzMySQLHelper
     Import-BlizzObject -Table $TargetTable -Object $Object -ConnectionName $ConnectionName
 }
 
@@ -252,7 +246,7 @@ foreach ($Mount in $Mounts) {
         source    = if ($DataMount.source) { $DataMount.source.name } else { '' }
     }
 
-    # Insert into MySQL
+    # Insert into MySQL - Special Modul https://github.com/JanaBaldszun/BlizzMySQLHelper
     Import-BlizzObject -Table $TargetTable -Object $Object -ConnectionName $ConnectionName
 }
 

@@ -30,6 +30,12 @@
 . $PSScriptRoot\Get-CreatureFamilyMedia.ps1
 . $PSScriptRoot\Get-CreatureType.ps1
 . $PSScriptRoot\Get-CreatureTypesIndex.ps1
+. $PSScriptRoot\Get-Decor.ps1
+. $PSScriptRoot\Get-DecorIndex.ps1
+. $PSScriptRoot\Get-Fixture.ps1
+. $PSScriptRoot\Get-FixtureHook.ps1
+. $PSScriptRoot\Get-FixtureHookIndex.ps1
+. $PSScriptRoot\Get-FixtureIndex.ps1
 . $PSScriptRoot\Get-GuildCrestBorderMedia.ps1
 . $PSScriptRoot\Get-GuildCrestComponentsIndex.ps1
 . $PSScriptRoot\Get-GuildCrestEmblemMedia.ps1
@@ -47,6 +53,7 @@
 . $PSScriptRoot\Get-ItemSetAppearance.ps1
 . $PSScriptRoot\Get-ItemSetAppearanceIndex.ps1
 . $PSScriptRoot\Get-ItemSetsIndex.ps1
+. $PSScriptRoot\Get-ItemSubclass.ps1
 . $PSScriptRoot\Get-JournalEncounter.ps1
 . $PSScriptRoot\Get-JournalEncounterIndex.ps1
 . $PSScriptRoot\Get-JournalExpansion.ps1
@@ -68,6 +75,9 @@
 . $PSScriptRoot\Get-MythicKeystonePeriodIndex.ps1
 . $PSScriptRoot\Get-MythicKeystoneSeason.ps1
 . $PSScriptRoot\Get-MythicKeystoneSeasonIndex.ps1
+. $PSScriptRoot\Get-Neighborhood.ps1
+. $PSScriptRoot\Get-NeighborhoodMap.ps1
+. $PSScriptRoot\Get-NeighborhoodMapIndex.ps1
 . $PSScriptRoot\Get-Pet.ps1
 . $PSScriptRoot\Get-PetAbility.ps1
 . $PSScriptRoot\Get-PetAbilityIndex.ps1
@@ -113,6 +123,8 @@
 . $PSScriptRoot\Get-ReputationFactionIndex.ps1
 . $PSScriptRoot\Get-ReputationTiers.ps1
 . $PSScriptRoot\Get-ReputationTiersIndex.ps1
+. $PSScriptRoot\Get-Room.ps1
+. $PSScriptRoot\Get-RoomIndex.ps1
 . $PSScriptRoot\Get-Soulbind.ps1
 . $PSScriptRoot\Get-SoulbindIndex.ps1
 . $PSScriptRoot\Get-Spell.ps1

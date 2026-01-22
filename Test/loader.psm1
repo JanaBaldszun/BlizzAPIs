@@ -8,5 +8,4 @@
 
 # LOADING ALL FUNCTION DEFINITIONS:
 
-. $PSScriptRoot\Import-BlizzObject.ps1
-. $PSScriptRoot\Set-UpdatesDate.ps1
+. $PSScriptRoot\Get-ItemSubclass.ps1

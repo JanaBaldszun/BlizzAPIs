@@ -11,6 +11,7 @@
 . $PSScriptRoot\Get-CharacterAchievements.ps1
 . $PSScriptRoot\Get-CharacterAchievementStatistics.ps1
 . $PSScriptRoot\Get-CharacterAppearance.ps1
+. $PSScriptRoot\Get-CharacterCollectedDecor.ps1
 . $PSScriptRoot\Get-CharacterCollectedHeirlooms.ps1
 . $PSScriptRoot\Get-CharacterCollectedMounts.ps1
 . $PSScriptRoot\Get-CharacterCollectedPets.ps1
@@ -20,6 +21,7 @@
 . $PSScriptRoot\Get-CharacterCovenant.ps1
 . $PSScriptRoot\Get-CharacterDungeons.ps1
 . $PSScriptRoot\Get-CharacterEquipment.ps1
+. $PSScriptRoot\Get-CharacterHouse.ps1
 . $PSScriptRoot\Get-CharacterHunterPets.ps1
 . $PSScriptRoot\Get-CharacterMedia.ps1
 . $PSScriptRoot\Get-CharacterMythicKeystoneProfile.ps1
